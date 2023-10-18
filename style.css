@@ -1,0 +1,74 @@
+body, html {
+    height: 100%;
+    background-color: #D8D8D8;
+  }
+
+#title {
+    background-image: url("media/story_title_1.png");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.title_layer {
+    height: 100%;
+    width: inherit;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+@keyframes fade-in {
+    0% { opacity: 0; } /* Start with opacity 0 */
+    100% { opacity: 1; } /* End with opacity 1 */
+}
+
+.title_layer:nth-child(1) {
+    animation: fade-in 1s 1s forwards; /* Fade in first image after 0.5s delay */
+}
+
+.title_layer:nth-child(2) {
+    animation: fade-in 1s 1.5s forwards; /* Fade in second image after 1s delay */
+}
+
+.title_layer:nth-child(3) {
+    animation: fade-in 1s 2s forwards; /* Fade in third image after 1.5s delay */
+}
+
+.graph {
+    font-size: 18px;
+    color: #262626;
+}
+
+a:hover span {
+    color: #DF763D;
+  }
+
+.message-container {
+    max-width: 60%;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    clear: both;
+    display: inline-block;
+    color: white;
+}
+
+.receiver {
+    background-color: #0197d7;
+    float: right;
+}
+
+.sender {
+    background-color: #363535;
+    float: left;
+}
+
+.btn {
+    width: 100px; /* Set the desired width */
+    height: 50px; /* Set the desired height */
+    font-size: 16px; /* Adjust the font size if needed */
+    color: red;
+  }
