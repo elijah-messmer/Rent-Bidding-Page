@@ -4,21 +4,17 @@
     <meta charset='utf-8' />
     <title>Mapbox Storytelling</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <link href="style.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/mapbox/assembly/publisher-staging/src/svgs/mapbox.svg">
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js'></script>
     <script src="https://unpkg.com/intersection-observer@0.12.0/intersection-observer.js"></script>
     <script src="https://unpkg.com/scrollama"></script>
     <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
     <script src="https://cdn.plot.ly/plotly-2.26.0.min.js" charset="utf-8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <style>
-        body {
-            margin:0;
-            padding:0;
-            font-family: sans-serif;
-        }
         a, a:hover, a:visited {
             color: #0071bc;
         }
@@ -135,6 +131,7 @@
 
         </style>
 </head>
+<main>
 <body>
     <header class="container-fluid" id="title">
         <img src="media\story_title_2.png" class="title_layer">
@@ -145,7 +142,7 @@
 <div class="container" style="padding: 2.5rem 0 2.5rem 0">
     <div class="row">
         <div class="col-lg-6 offset-lg-3">
-            <p style="font-size: small; text-align: center;">By Elijah Nicholson-Messmer</p>
+            <p style="font-size: 16px; text-align: center;">By Elijah Nicholson-Messmer</p>
             <p>When Alexandra Stephanou and her partner started looking for a new apartment back in February, &lsquo;rent bidding&rsquo; was an unfamiliar concept to the two. By the end of their search, it was a $1,200 reality.</p>
             <p>After living in the same North End apartment since moving to Boston in May of 2020, Stephanou enlisted the help of a Compass real estate broker to ease the process of looking for a new apartment. Quickly, the agent&rsquo;s assistance proved to be a point of stress itself.</p>
             <p>&ldquo;She was very aggressive with [saying], &lsquo;Well, if you like it, you have to apply now,&rsquo;&rdquo; Stephanou said. &ldquo;And mind you, this is early March and we&rsquo;re trying to rent a September 1 unit. She created an environment of a lot of pressure, like &lsquo;There is going to be rent bidding, are you prepared for that?&rsquo;&rdquo;</p>
@@ -182,8 +179,9 @@
 <div class="container" style="padding-top: 2.5rem;">
     <div class="row" style="text-align: left;">
         <div class="col-lg-6 offset-lg-3">
+            <button type="button" id="scrollButton" style="display: block; margin: auto; margin-bottom: 2rem;">Explore the map</button>
             <h3>A costly recovery</h3>
-            <p>Still, the correlation between student populations and the rate of rent bidding is far from perfect. Brokers point to a variety of factors behind the emerging issue, including rising interest rates forcing would-be home buyers back to the rental market, a return to office push from employers, and a sub-1% vacancy rate across the greater Boston area.</p>
+            <p>Brokers point to a variety of factors behind the emerging issue, including rising interest rates forcing would-be home buyers back to the rental market, a return to office push from employers, and a sub-1% vacancy rate across the greater Boston area.</p>
             <p>devin michelle bunten, an assistant professor in the Department of Urban Studies and Planning at MIT, said that housing shortages, whether in home sales or apartment rentals, are at the root of hyper-competitive markets like Boston&rsquo;s.</p>
             <p>After Boston&rsquo;s vacancy rate hit a multi-year high of nearly 8% in September 2020, the number of available rentals has rapidly declined across the city, driving the current vacancy rate to below pre-pandemic numbers.</p>
             <p>The city&rsquo;s tight rental market leaves many renters lining up, often literally, for a limited number of units. </p>
@@ -192,27 +190,167 @@
             <p>Rather than simply increasing rent prices in unit listings, landlords may use rent bidding as a tool to learn just how much they can charge for an apartment in the current market, bunten said. "This is a way to further turn the shortage to the advantage of the landlords by enabling them to use their power to extract that information from tenants, like, just how much can they get away with charging," she said.</p>
         </div>
     </div>
-    <div class="row" style="text-align: left;">
-        <div class="col-lg-6">
-            <div id='myDiv' style="margin-bottom: 1rem;"></div>
+    <div class="row">
+        <div class="col-lg-10 offset-lg-1">
+            <div id='barPlot' style="margin-bottom: 1rem;"></div>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-6 offset-lg-3">
             <p>Rent bidding is not the only tactic Boston renters have used to try and get an edge in a competitive market. One renter said that while she did not bid on the rent price itself, she did offer her broker $500 in cash on top of the standard broker fee to secure an apartment.</p>
             <p>A Somerville resident said that, on top of offering an extra $150 a month on the listed rent price, she also created 'rental resumes' for her and her roommates, detailing references, hobbies, and job experience to strengthen their application at her broker's suggestion.</p>
             <p>Even high-earners like Stephanou and her partner have tried signing longer, 18-month lease agreements to escape a bidding war.</p>
-        </div>
-        <div class="col-lg-6 offset-lg-3">
             <p>“The whole experience just made us feel really fortunate that we have that type of income to pay for a place like this, as well as really discouraged about the housing market,” Stephanou said. “I don't know how people afford to live here who don't have high-paying jobs. I don't understand how families or low-income families do it.”</p>
-            <h3>The rent eats first</h3>
-            <h3>The regulatory landscape</h3>
-            <h3>The new rules</h3>
         </div>
     </div>
 </div>
+<div class="container">
+    <div class="row" style="text-align: left;">
+        <div class="col-lg-6 offset-lg-3">
+            <h3>An academic problem</h3>
+        </div>
+            <section id="scrolly">
+                <div class="sticky-thing">
+                    <div id="scatterPlot" style="width: 100%; height: 100%;"></div>
+                </div>
+                <article class="scrolly-overlay">
+                <div class="part" id="part1">
+                </div>
+                <div class="part" id="part2">
+                    <p>In Allston, a quarter of all apartments were bid up from their initial list price. Data shows that the neighborhood&rsquo;s popularity among <span style="background-color: #69907f;">university students</span> may be partially to blame for the high rate of rent bidding.</p>
+                </div>
+                <div class="part" id="part3">
+                    <p>There is a consistent pattern across Boston ZIP Codes: areas with more students also tend to have higher rates of rent bidding.</p>
+                </div>
+                <div class="part" id="part4">
+                    <p><span style="background-color: #16457f;">Undergraduate students</span> are a big contributor to that pattern. Although most of them live on-campus or in university-provided housing, there were still 18,500 undergraduate students competing for housing in the rental market in 2022.</p>
+                </div>
+                <div class="part" id="part5">
+                    <p>That pattern is particularly strong when it comes to <span style="background-color: #ff6224;">graduate students</span>, who are responsible for 37% of the rent bidding variance in a given ZIP Code. Generally speaking, a ZIP Code&rsquo;s rate of rent bidding increases by one percent for every 275 additional graduate students living there.</p>
+                </div>
+                <div class="part" id="part6">
+                    <p>While undergraduate enrollment has remained relatively flat over the last 10 years, the number of graduate students across Boston has risen 20% just since 2020, according to the <a href="https://www.boston.gov/sites/default/files/file/2023/06/Student%20Housing%20Report%2C%202022.pdf" target="_blank" style="color: inherit;"><span style="transition: color 0.3s;">City of Boston</span></a>.</p>
+                </div>
+                <div class="part" id="part7">
+                    <p>Only 10% of graduate students live on-campus or in university-provided housing, making rising rates of enrollment a concern in a tight housing market.</p>
+                </div>
+                <div class="part" id="part8">
+                    <p>Nearly three-quarters of Boston&rsquo;s graduate students are concentrated in just five ZIP Codes. On average, 17% of rentals went for above the asking price in these neighborhoods — 4% higher than the average rate for the rest of Boston.</p>
+                </div>
+                <div class="part" id="part9">
+                    <p>Sarah Doucette, a real estate agent at Rise Realty, said that all her clients who participated in bidding wars this year were students, usually at the graduate level. “I don't really see bidding wars amongst working people. It's mostly this September 1st student rush,” she said. “It's just very competitive. And it seems like they're willing to pay whatever it takes just to get into the apartment.”</p>
+                </div>
+                </article>
+              </section>
+        <div class="col-lg-6 offset-lg-3">
+            <p>TK: Anecdote from Northeastern Student who had to bid on their apartment (scheduled for 10/24)</p>
+            <p>TK: Quotes from Cambridge broker about student impact on rent bidding (working to schedule an interview for before the end of October)</p>
+         </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row" style="text-align: left;">
+        <div class="col-lg-6 offset-lg-3">
+            <h3>The rent eats first</h3>
+            <p>Neighborhoods with large Black and Latino populations like Roxbury and Dorchester have some of the most severe rent bidding in the greater Boston area. Bidding wars don&rsquo;t pop up as frequently in these neighborhoods compared to the rest of the city, but when they do renters end up paying 7% to 8% above the list price on average — amounting to thousands of dollars a year in additional rent costs.</p>
+            <p>For Black and Latino residents, who are already disproportionally rent-burdened, keeping up with such bidding wars may push them to even more severe degrees of rent burden.</p>         
+        </div>
+        <div class="col-lg-10 offset-lg-1" style="text-align: center;">
+            <div id='barPro'></div>
+            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 579 17.43" width="80%" height="30">
+                <defs>
+                  <style>
+                    .cls-1 {
+                      fill: none;
+                      stroke: url(#linear-gradient);
+                      stroke-miterlimit: 10;
+                      stroke-width: 2.5px;
+                    }
+              
+                    .cls-2 {
+                      fill: url(#linear-gradient-2);
+                    }
+              
+                    .cls-2, .cls-3 {
+                      stroke-width: 0px;
+                    }
+              
+                    .cls-3 {
+                      fill: url(#linear-gradient-3);
+                    }
+                  </style>
+                  <linearGradient id="linear-gradient" x1="0" y1="8.72" x2="579" y2="8.72" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#16457f"/>
+                    <stop offset=".25" stop-color="#007084"/>
+                    <stop offset=".5" stop-color="#69907f"/>
+                    <stop offset=".71" stop-color="#c9984e"/>
+                    <stop offset="1" stop-color="#ff6224"/>
+                  </linearGradient>
+                  <linearGradient id="linear-gradient-2" y1="8.72" y2="8.72" xlink:href="#linear-gradient"/>
+                  <linearGradient id="linear-gradient-3" y1="8.72" y2="8.72" xlink:href="#linear-gradient"/>
+                </defs>
+                <line class="cls-1" x1="26.58" y1="8.72" x2="552.42" y2="8.72"/>
+                <polygon class="cls-2" points="32.52 17.43 0 8.72 32.52 0 32.52 17.43"/>
+                <polygon class="cls-3" points="546.48 17.43 579 8.72 546.48 0 546.48 17.43"/>
+                <text x="35" y="7" font-size="10" fill="#16457f">Less income spent on rent</text>
+                <text x="540" y="7" font-size="10" fill="#ff6224" text-anchor="end">More income spent on rent</text>
+              </svg>
+        </div>
+        <div class="col-lg-6 offset-lg-3">
+            <p style="margin-top: 1rem;">TK: Working to interview City Life/Vida Urbana source</p>       
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row" style="text-align: left;">
+        <div class="col-lg-6 offset-lg-3">
+            <h3>The regulatory landscape</h3>
+            <p>Real estate brokers are not prohibited by any regulations from participating in rent bidding, according to the Board of Registration of Real Estate Brokers and Salespersons.</p>
+            <p>Some brokerage agencies have internal policies that prevent bidding wars from happening in the first place. But, for such policies to work a landlord has to offer an “exclusive” listing, where they choose to list their rental with only one agency. But, it&rsquo;s unknown how common such exclusive listings are.</p>
+            <p>Even for Scott Hanes — whose brokerage&rsquo;s internal policy does not allow for rent bidding — the majority of rentals he works with are “open,” meaning that multiple brokerages have access to advertise and rent out the apartment.</p>
+            <p>“When my clients are interested in an apartment that's exclusive to another brokerage, especially if there's an open house, I tell them that there are apartments out there that rent for a price higher than asking,” Hanes said. “I'm the source of the information and it's up to them to make a decision. I work in the best interest of my clients and we've been successful at times with this bidding war, but we've also missed out on some.”</p>
+            <p>Under the current regulatory landscape, whether or not a bidding war happens is ultimately up to the landlord of the rental property, according to Sarah Doucette.</p>
+            <p>The lack of regulation is unsurprising given the phenomenon&rsquo;s nascent state in Boston. But, brokers like Doucette would like to see legislation passed that bans the practice.</p>
+            <p>“The rents are one price advertised and that's really what it should be,” Doucette said. “You know, you have somebody with a certain budget and then you have to really go into it telling them it's going to be $100 to $200 over.”</p>
+            <p>Exactly what that regulation would look like for Boston is unclear, but countries like Australia offer some potential approaches.</p>
+            <p>TK: Interview with Chris Martin, Senior Research Fellow at City Futures Research Centre in NSW. I have the interview completed already, I just do not have enough time to include it here for draft #1.</p>
+        </div>
+    </div>
+</div>
+<div class="container" style="padding-bottom: 3rem;">
+    <div class="row" style="text-align: left;">
+        <div class="col-lg-6 offset-lg-3">
+            <h3>How bad is rent bidding near you?</h3>
+        </div>
+    </div>
+</div>
+        <div id="dashboard"></div>
+<div class="container" style="padding-top: 3rem;">
+    <div class="row" style="text-align: left;">
+        <div class="col-lg-6 offset-lg-3">
+            <h3>The new rules</h3>
+            <p>As Boston's supply of housing trails behind demand, it is unclear if rent bidding will continue into the future.</p>
+            <p>Housing shortages turn the rental market into a game of musical chairs, bunten said. Historically, the people who were able to secure a seat, so to speak, were those who submitted their applications the quickest, assuming they met the landlord's qualifications.</p>
+            <p>Rent bidding may be changing that.</p>
+            <p>"Now, it's simply asking tenants to pay more to get a seat," bunten said. "And, in any case, there's a bunch of folks who are not gonna be able to sit down, and who are not going to be able to find housing in Boston, or at least in the areas that they want to live, or that they've been living, [where] their social lives and their cultural lives are built around."</p>
+        </div>
+    </div>
+</div>
+<footer class="container" style="padding-top: 5rem"></footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
 <script src="script.js"></script>
+<script src="scrollama.js"></script>
 <script src="./config.js"></script>
+
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZWxpamFoLW1lc3NtZXIiLCJhIjoiY2xmYWNkMnFnMDRiZTNwcGJsM2J0ZjRpeCJ9.srDYVTRF4yqQ9QIz5b3EvA';
+    const map2 = new mapboxgl.Map({
+    container: 'dashboard', // container ID
+    // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+    style: 'mapbox://styles/elijah-messmer/cln4vvc0x06wc01ns1l7m0b8m', // style URL
+    center: [-71.13983, 42.33769], // starting position [lng, lat]
+    zoom: 11 // starting zoom
+    });
+</script>
+
 <script>
 var initLoad = true;
 var layerTypes = {
@@ -339,7 +477,7 @@ const transformRequest = (url) => {
     const hasQuery = url.indexOf("?") !== -1;
     const suffix = hasQuery ? "&pluginName=scrollytellingV2" : "?pluginName=scrollytellingV2";
     return {
-      url: url + suffix
+        url: url + suffix
     }
 }
 
@@ -357,7 +495,7 @@ var map = new mapboxgl.Map({
 
 // Create a inset map if enabled in config.js
 if (config.inset) {
- var insetMap = new mapboxgl.Map({
+    var insetMap = new mapboxgl.Map({
     container: 'mapInset', // container id
     style: 'mapbox://styles/mapbox/dark-v10', //hosted style id
     center: config.chapters[0].location.center,
@@ -369,7 +507,7 @@ if (config.inset) {
     //Future: Once official mapbox-gl-js has globe view enabled,
     //insetmap can be a globe with the following parameter.
     //projection: 'globe'
-  });
+    });
 }
 
 if (config.showMarkers) {
@@ -378,7 +516,7 @@ if (config.showMarkers) {
 }
 
 // instantiate the scrollama
-var scroller = scrollama();
+var scroller1 = scrollama();
 
 
 map.on("load", function() {
@@ -409,7 +547,7 @@ map.on("load", function() {
     map.on('move', getInsetBounds);
     }
     // setup the instance, pass callback functions
-    scroller
+    scroller1
     .setup({
         step: '.step',
         offset: 0.5,
@@ -426,12 +564,12 @@ map.on("load", function() {
         // rather want to keep it a static view but still change the
         // bbox as main map move: comment out the below if section.
         if (config.inset) {
-          if (chapter.location.zoom < 5) {
+            if (chapter.location.zoom < 5) {
             insetMap.flyTo({center: chapter.location.center, zoom: 0});
-          }
-          else {
+            }
+            else {
             insetMap.flyTo({center: chapter.location.center, zoom: 3});
-          }
+            }
         }
         if (config.showMarkers) {
             marker.setLngLat(chapter.location.center);
@@ -453,10 +591,10 @@ map.on("load", function() {
             });
         }
         if (config.auto) {
-             var next_chapter = (current_chapter + 1) % config.chapters.length;
-             map.once('moveend', () => {
-                 document.querySelectorAll('[data-scrollama-index="' + next_chapter.toString() + '"]')[0].scrollIntoView();
-             });
+                var next_chapter = (current_chapter + 1) % config.chapters.length;
+                map.once('moveend', () => {
+                    document.querySelectorAll('[data-scrollama-index="' + next_chapter.toString() + '"]')[0].scrollIntoView();
+                });
         }
     })
     .onStepExit(response => {
@@ -557,10 +695,10 @@ function updateInsetLayer(bounds) {
 
 
 // setup resize event
-window.addEventListener('resize', scroller.resize);
+window.addEventListener('resize', scroller1.resize);
 
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 </body>
+</main>
 </html>
