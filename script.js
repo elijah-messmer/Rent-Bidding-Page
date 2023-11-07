@@ -39,7 +39,8 @@ d3.csv('./graph_data/bedroom_avg_ci.csv').then(function(data1) {
       opacity: 0.9,
       marker: {
         color: '#EDA229',
-      }
+      },
+      visible: false,
     };
 
     var dataPercent = {
@@ -57,7 +58,6 @@ d3.csv('./graph_data/bedroom_avg_ci.csv').then(function(data1) {
       marker: {
         color: '#EDA229',
       },
-      visible: false,
     };
     
     var data = [dataRaw, dataPercent];
@@ -67,13 +67,13 @@ d3.csv('./graph_data/bedroom_avg_ci.csv').then(function(data1) {
         {
           buttons: [
             {
-              args: [{'visible': [true, false]},],
-              label: ' Raw ',
+              args: [{'visible': [false, true]},],
+              label: 'Percent',
               method: 'update'
             },
             {
-              args: [{'visible': [false, true]},],
-              label: 'Percent',
+              args: [{'visible': [true, false]},],
+              label: 'Average',
               method: 'update'
             }
           ],
@@ -92,24 +92,52 @@ d3.csv('./graph_data/bedroom_avg_ci.csv').then(function(data1) {
         }
       ],
       title: {
-        text:'Average bid by bedroom count',
+        text:'2- and 4-bedroom apartments receive the higest percent bids on average',
         font: {
           family: 'georgia, serif',
-          size: 18,
+          size: 22,
           color: '#262626'
         },
         xref: 'paper',
         xanchor: 'left',
-        x: 0.01,
-        y: 0.92,
+        x: 0.0,
+        y: 0.96,
       },
       showlegend: false,
       paper_bgcolor: '#FBFBFB',
       plot_bgcolor: '#FBFBFB',
+      annotations: [
+        {
+          text: 'Calculated as the percent increase from the list to sale price, to normalize across apartments.',
+          xref: 'paper',
+          yref: 'paper',
+          xanchor: 'left',
+          x: 0.0,
+          y: 1.06,
+          showarrow: false,
+          font: {
+            size: 14,
+            color: 'grey'
+          }
+        },
+        {
+          text: 'Source: Multiple Listing Service, 2023',
+          xref: 'paper',
+          yref: 'paper',
+          xanchor: 'left',
+          x: 0,
+          y: -0.13,
+          showarrow: false,
+          font: {
+            size: 14,
+            color: 'grey'
+          }
+        }
+      ],
       margin: {
         l: 40,
         r: 40,
-        b: 40,
+        b: 45,
         t: 40,
         pad: 0
       },
@@ -206,7 +234,7 @@ var traces = [
     orientation: 'h',
     name: '30.0% to 34.9%',
     hoverinfo: 'x+name',
-    marker: { color: '#b7a575' }
+    marker: { color: '#F0DD07' }
   },
   {
     y: ['Latino', 'White', 'Black', 'Asian'],
@@ -215,7 +243,7 @@ var traces = [
     orientation: 'h',
     name: '35.0% to 39.9%',
     hoverinfo: 'x+name',
-    marker: { color: '#c9984e' }
+    marker: { color: '#ffca00' }
   },
   {
     y: ['Latino', 'White', 'Black', 'Asian'],
@@ -224,7 +252,7 @@ var traces = [
     orientation: 'h',
     name: '40.0% to 49.9%',
     hoverinfo: 'x+name',
-    marker: { color: '#e28330' }
+    marker: { color: '#ff9700' }
   },
   {
     y: ['Latino', 'White', 'Black', 'Asian'],
@@ -240,26 +268,27 @@ var traces = [
 
 var layout2 = {
   title: {
-    text:'Percentage of income spent on rent',
+    text:'Black and Latino households are disproportionately rent burdened',
     font: {
       family: 'georgia, serif',
-      size: 18,
+      size: 22,
       color: '#262626'
     },
     xref: 'paper',
     xanchor: 'left',
     x: 0.0,
-    y: .97,
+    y: 1,
   },
-  barmode: 'stack', // Stacked bars
+  barmode: 'relative', // Stacked bars
   showlegend: false, // Show legend
+  baroffset: 1,
   paper_bgcolor: '#FBFBFB',
   plot_bgcolor: '#FBFBFB',
   margin: {
     l: 60,
     r: 60,
     b: 10,
-    t: 40,
+    t: 25,
     pad: 0
   },
   xaxis: {
@@ -279,6 +308,33 @@ var layout2 = {
     },
     tickcolor: '#FBFBFB',
   },
+  annotations: [
+    {
+      text: 'Rent burdened households spend 30% or more of their income on rent',
+      xref: 'paper',
+      xanchor: 'left',
+      x: 0.0,
+      y: 3.7,
+      showarrow: false,
+      font: {
+        size: 14,
+        color: 'grey'
+      }
+    },
+    {
+      text: 'Source: American Community Survey 2017-2021 5-year estimates',
+      xref: 'paper',
+      xanchor: 'left',
+      x: 0,
+      y: -.7,
+      showarrow: false,
+      font: {
+        size: 14,
+        color: 'grey'
+      }
+    }
+    // Add more annotations as needed
+  ]
 };
 
 Plotly.newPlot('barPro', traces, layout2, {displayModeBar: false}, {responsive: true});
@@ -314,8 +370,6 @@ Plotly.newPlot('barPro', traces, layout2, {displayModeBar: false}, {responsive: 
 var csvURL = './graph_data/studentScatter.csv'; // Replace with the actual URL
 
 d3.csv('./graph_data/studentScatter.csv').then(function(data) {
-
-    console.log('Parsed CSV data for studentScatter.csv:', data);
 
     var traceGraduateStudents = {
         x: data.map(item => parseFloat(item.Percent_Rent_Bidding)),
