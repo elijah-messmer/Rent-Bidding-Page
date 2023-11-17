@@ -188,6 +188,12 @@ chapters: [
             pitch: 0.00,
             bearing: 0.00
         },
+        mobileLocation: {
+            center: [-71.07083, 42.33769],
+            zoom: 10.00, // Adjusted zoom level for mobile
+            pitch: 0.00,
+            bearing: 0.00
+        },
         mapAnimation: 'flyTo',
         rotateAnimation: false,
         callback: 'hideLegend',
@@ -208,6 +214,12 @@ chapters: [
         location: {
             center: [-71.13983, 42.33769],
             zoom: 11.00,
+            pitch: 0.00,
+            bearing: 0.00
+        },
+        mobileLocation: {
+            center: [-71.07083, 42.33769],
+            zoom: 10.00, // Adjusted zoom level for mobile
             pitch: 0.00,
             bearing: 0.00
         },
@@ -239,6 +251,12 @@ chapters: [
             pitch: 0.00,
             bearing: 0.00
         },
+        mobileLocation: {
+            center: [-71.07083, 42.33769],
+            zoom: 10.00, // Adjusted zoom level for mobile
+            pitch: 0.00,
+            bearing: 0.00
+        },
         mapAnimation: 'flyTo',
         rotateAnimation: false,
         callback: 'popup',
@@ -256,6 +274,12 @@ chapters: [
             pitch: 0.00,
             bearing: 0.00
         },
+        mobileLocation: {
+            center: [-71.12109, 42.39992],
+            zoom: 12.6,
+            pitch: 0.00,
+            bearing: 0.00
+        },
         mapAnimation: 'flyTo',
         rotateAnimation: false,
         callback: '',
@@ -270,6 +294,12 @@ chapters: [
         location: {
             center: [-71.13609, 42.39992],
             zoom: 13.37,
+            pitch: 0.00,
+            bearing: 0.00
+        },
+        mobileLocation: {
+            center: [-71.12109, 42.39992],
+            zoom: 12.6,
             pitch: 0.00,
             bearing: 0.00
         },
@@ -295,12 +325,16 @@ chapters: [
         id: 'fifth-identifier',
         alignment: 'left',
         hidden: false,
-        // title: 'Third Title',
-        // image: './path/to/image/source.png',
         description: 'Tom McCauley, a 27-year-old tech worker, found his apartment on that <span style="border-bottom: 1px dashed #fd1212; border-width: 3px">same Somerville-Cambridge line</span>. Before finding their current apartment, McCauley and his roommate inquired about 30-plus units across Fenway, East Somerville, and Watertown; toured six to seven apartments, and lost three bidding wars, often surrendering $25- to $50-dollar application fees.<br><br>At their new two-bedroom apartment, the two pay $3,000 a month plus utilities, after bidding up from the initial $2,875 list price.',
         location: {
             center: [-71.12609, 42.38692],
             zoom: 13.37,
+            pitch: 0.00,
+            bearing: 0.00
+        },
+        mobileLocation: {
+            center: [-71.11209, 42.38692],
+            zoom: 12.2,
             pitch: 0.00,
             bearing: 0.00
         },
@@ -326,12 +360,16 @@ chapters: [
         id: 'sixth-identifier',
         alignment: 'left',
         hidden: false,
-        // title: 'Third Title',
-        // image: './path/to/image/source.png',
         description: '“I’ve lived in the Boston area for 4 years,” McCauley said. “This is the first time I’ve ever experienced rent bidding. Some of my friends who have been here longer have also never experienced it, at least not at this scale.”',
         location: {
             center: [-71.12609, 42.38692],
             zoom: 13.37,
+            pitch: 0.00,
+            bearing: 0.00
+        },
+        mobileLocation: {
+            center: [-71.11209, 42.38692],
+            zoom: 12.2,
             pitch: 0.00,
             bearing: 0.00
         },
@@ -345,12 +383,16 @@ chapters: [
         id: 'seventh-identifier',
         alignment: 'left',
         hidden: false,
-        // title: 'Third Title',
-        // image: './path/to/image/source.png',
         description: 'Across Somerville, the <a href="https://www.boston.com/real-estate/renting/2023/05/04/along-green-line-extension-bidding-wars-over-rentals-pick-up-speed/" target="_blank" style="text-decoration: none; color: inherit;"><span style="transition: color 0.3s; border-bottom: 1px dashed #00d62e; border-width: 3px">opening of the Green Line Extension stops</span></a> has driven up housing demand and costs driving above-average rates of rent bidding compared to nearby Cambridge and Boston.',
         location: {
             center: [-71.10449, 42.39043],
             zoom: 13.23,
+            pitch: 0.00,
+            bearing: 0.00
+        },
+        mobileLocation: {
+            center: [-71.10049, 42.39043],
+            zoom: 12.4,
             pitch: 0.00,
             bearing: 0.00
         },
@@ -383,6 +425,12 @@ chapters: [
             pitch: 0.00,
             bearing: 0.00
         },
+        mobileLocation: {
+            center: [-71.10049, 42.39043],
+            zoom: 12.4,
+            pitch: 0.00,
+            bearing: 0.00
+        },
         mapAnimation: 'flyTo',
         rotateAnimation: false,
         callback: 'updateLegend1',
@@ -408,6 +456,12 @@ chapters: [
         location: {
             center: [-71.13983, 42.33769],
             zoom: 11.00,
+            pitch: 0.00,
+            bearing: 0.00
+        },
+        mobileLocation: {
+            center: [-71.07083, 42.33769],
+            zoom: 10.00, // Adjusted zoom level for mobile
             pitch: 0.00,
             bearing: 0.00
         },
@@ -450,6 +504,12 @@ chapters: [
             pitch: 0.00,
             bearing: 0.00
         },
+        mobileLocation: {
+            center: [-71.07083, 42.33769],
+            zoom: 10.00, // Adjusted zoom level for mobile
+            pitch: 0.00,
+            bearing: 0.00
+        },
         mapAnimation: 'flyTo',
         rotateAnimation: false,
         callback: '',
@@ -458,39 +518,3 @@ chapters: [
     },
 ]
 };
-
-// //   pull the choropleth colors from the map layer and print them in the console
-// setTimeout(function() {
-//     function getChoroplethColors(layerName) {
-//         var features = map.queryRenderedFeatures({ layers: [layerName] });
-//         var colors = [];
-
-//         if (features.length > 0) {
-//             features.forEach(feature => {
-//                 var colorValue = feature.properties.color; // Replace with your property name
-//                 colors.push(colorValue);
-//             });
-//         }
-
-//         console.log(colors);
-//     }
-//     getChoroplethColors('percent-positive-price-difference');
-// }, 5000);
-  
-// setTimeout(function() {
-//     function getChoroplethColors(layerName) {
-//         var features = map.queryRenderedFeatures({ layers: [layerName] });
-//         var colors = [];
-
-//         if (features.length > 0) {
-//             features.forEach(feature => {
-//                 var colorValue = feature.properties.color; // Replace with your property name
-//                 colors.push(colorValue);
-//             });
-//         }
-
-//         console.log(colors);
-//     }
-
-//     getChoroplethColors('percent-positive-price-difference');
-// }, 15000);

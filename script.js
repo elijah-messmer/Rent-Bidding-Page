@@ -5,359 +5,29 @@ document.getElementById('scrollButton').addEventListener('click', function() {
   targetSection.scrollIntoView({ behavior: 'smooth' });
 });
 
+// Function to update font size, position, and x based on screen width for a specific chart
+function updateLayoutForChart() {
+  var w = window.innerWidth;
 
+  // Set different font sizes, position, and x based on screen width
+  var tickAngle;
 
-
-// Load and parse bedroom_avg_ci.csv
-d3.csv('./graph_data/bedroom_avg_ci.csv').then(function(data1) {
-  // console.log('Parsed CSV data for bedroom_avg_ci.csv:', data1);
-
-  var yValues = data1.map(row => row.mean);
-  var lowCI = data1.map(row => row.mean - row.lower_CI);
-  var upperCI = data1.map(row => row.upper_CI - row.mean);
-
-  // Load and parse bedroom_percent_ci.csv
-  d3.csv('./graph_data/bedroom_percent_ci.csv').then(function(data2) {
-    // console.log('Parsed CSV data for bedroom_percent_ci.csv:', data2);
-
-    var yValues2 = data2.map(row => row.mean);
-    var lowCI2 = data2.map(row => row.mean - row.Lower_CI);
-    var upperCI2 = data2.map(row => row.Upper_CI - row.mean);
-    
-
-    var dataRaw = {
-      x: ['Studio', '1', '2', '3', '4', '5+'],
-      y: yValues,
-      error_y: {
-        type: 'data',
-        symmetric: false,
-        array: upperCI,
-        arrayminus: lowCI,
-      },
-      hovertemplate: 'Average bid: <b>$%{y:.2f}</b><extra></extra>',
-      type: 'bar',
-      opacity: 0.9,
-      marker: {
-        color: '#EDA229',
-      },
-      visible: false,
-    };
-
-    var dataPercent = {
-      x: ['Studio', '1', '2', '3', '4', '5+'],
-      y: yValues2,
-      error_y: {
-        type: 'data',
-        symmetric: false,
-        array: upperCI2,
-        arrayminus: lowCI2,
-      },
-      hovertemplate: 'Average percent bid: <b>%{y:.2f}%</b><extra></extra>',
-      type: 'bar',
-      opacity: 0.9,
-      marker: {
-        color: '#EDA229',
-      },
-    };
-    
-    var data = [dataRaw, dataPercent];
-
-    var layout = {
-      updatemenus: [
-        {
-          buttons: [
-            {
-              args: [{'visible': [false, true]},],
-              label: 'Percent',
-              method: 'update'
-            },
-            {
-              args: [{'visible': [true, false]},],
-              label: 'Average',
-              method: 'update'
-            }
-          ],
-          bgcolor: '#FBFBFB',
-          bordercolor: '#EDA229',
-          direction: 'left',
-          font: {'size': 12,},
-          pad: {'r': 10, 't': 10},
-          showactive: false,
-          type: 'buttons',
-          x: .85,
-          xref: 'paper',
-          xanchor: 'left',
-          y: 1.15,  // Adjusted y value
-          yanchor: ''
-        }
-      ],
-      title: {
-        text:'2- and 4-bedroom apartments receive the higest percent bids on average',
-        font: {
-          family: 'georgia, serif',
-          size: 22,
-          color: '#262626'
-        },
-        xref: 'paper',
-        xanchor: 'left',
-        x: 0.0,
-        y: 0.96,
-      },
-      showlegend: false,
-      paper_bgcolor: '#FBFBFB',
-      plot_bgcolor: '#FBFBFB',
-      annotations: [
-        {
-          text: 'Calculated as the percent increase from the list to sale price, to normalize across apartments.',
-          xref: 'paper',
-          yref: 'paper',
-          xanchor: 'left',
-          x: 0.0,
-          y: 1.06,
-          showarrow: false,
-          font: {
-            size: 14,
-            color: 'grey'
-          }
-        },
-        {
-          text: 'Source: Multiple Listing Service, 2023',
-          xref: 'paper',
-          yref: 'paper',
-          xanchor: 'left',
-          x: 0,
-          y: -0.13,
-          showarrow: false,
-          font: {
-            size: 14,
-            color: 'grey'
-          }
-        }
-      ],
-      margin: {
-        l: 40,
-        r: 40,
-        b: 45,
-        t: 40,
-        pad: 0
-      },
-      xaxis: {
-        type: 'category'
-      },
-      yaxis: {
-        color: 'grey',
-        },
-      };
-
-    Plotly.newPlot('barPlot', data, layout, {displayModeBar: false}, {responsive: true});
-  });
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var traces = [
-  {
-    y: ['Latino', 'White', 'Black', 'Asian'],
-    x: [4.02, 3.61, 5.17, 13.85],
-    type: 'bar',
-    orientation: 'h',
-    name: 'Not computed',
-    hoverinfo: 'x+name',
-    marker: { color: '#16457f' }
-  },
-  {
-    y: ['Latino', 'White', 'Black', 'Asian'],
-    x: [4.37, 5.74, 4.32, 5.23],
-    type: 'bar',
-    orientation: 'h',
-    name: '< 10.0%',
-    hoverinfo: 'x+name',
-    marker: { color: '#005c87' }
-  },
-  {
-    y: ['Latino', 'White', 'Black', 'Asian'],
-    x: [6.34, 9.51, 6.75, 5.18],
-    type: 'bar',
-    orientation: 'h',
-    name: '10.0% to 14.9%',
-    hoverinfo: 'x+name',
-    marker: { color: '#007084' }
-  },
-  {
-    y: ['Latino', 'White', 'Black', 'Asian'],
-    x: [9.27, 14.33, 9.28, 8.67],
-    type: 'bar',
-    orientation: 'h',
-    name: '15.0% to 19.9%',
-    hoverinfo: 'x+name',
-    marker: { color: '#3c817f' }
-  },
-  {
-    y: ['Latino', 'White', 'Black', 'Asian'],
-    x: [9.71, 14.76, 8.65, 9.46],
-    type: 'bar',
-    orientation: 'h',
-    name: '20.0% to 24.9%',
-    hoverinfo: 'x+name',
-    marker: { color: '#69907f' }
-  },
-  {
-    y: ['Latino', 'White', 'Black', 'Asian'],
-    x: [12.06, 13.72, 10.40, 10.93],
-    type: 'bar',
-    orientation: 'h',
-    name: '25.0% to 29.9%',
-    hoverinfo: 'x+name',
-    marker: { color: '#aead9e' }
-  },
-  {
-    y: ['Latino', 'White', 'Black', 'Asian'],
-    x: [9.92, 8.10, 8.61, 9.33],
-    type: 'bar',
-    orientation: 'h',
-    name: '30.0% to 34.9%',
-    hoverinfo: 'x+name',
-    marker: { color: '#F0DD07' }
-  },
-  {
-    y: ['Latino', 'White', 'Black', 'Asian'],
-    x: [7.34, 5.40, 6.81, 6.81],
-    type: 'bar',
-    orientation: 'h',
-    name: '35.0% to 39.9%',
-    hoverinfo: 'x+name',
-    marker: { color: '#ffca00' }
-  },
-  {
-    y: ['Latino', 'White', 'Black', 'Asian'],
-    x: [8.31, 6.19, 10.09, 5.62],
-    type: 'bar',
-    orientation: 'h',
-    name: '40.0% to 49.9%',
-    hoverinfo: 'x+name',
-    marker: { color: '#ff9700' }
-  },
-  {
-    y: ['Latino', 'White', 'Black', 'Asian'],
-    x: [28.66, 18.65, 29.91, 24.93],
-    type: 'bar',
-    orientation: 'h',
-    name: '50.0% or more',
-    hoverinfo: 'x+name',
-    marker: { color: '#ff6224' }
+  if (w <= 500) {
+    tickAngle = -90;
+  } else {
+    tickAngle = 0;
   }
-];
 
+  // Update tick angle in the layout for the specific chart with ID 'scatterPlot'
+  Plotly.relayout('scatterPlot', {
+    'yaxis.tickangle': tickAngle,
+  });
+}
 
-var layout2 = {
-  title: {
-    text:'Black and Latino households are disproportionately rent burdened',
-    font: {
-      family: 'georgia, serif',
-      size: 22,
-      color: '#262626'
-    },
-    xref: 'paper',
-    xanchor: 'left',
-    x: 0.0,
-    y: 1,
-  },
-  barmode: 'relative', // Stacked bars
-  showlegend: false, // Show legend
-  baroffset: 1,
-  paper_bgcolor: '#FBFBFB',
-  plot_bgcolor: '#FBFBFB',
-  margin: {
-    l: 60,
-    r: 60,
-    b: 10,
-    t: 25,
-    pad: 0
-  },
-  xaxis: {
-    color: 'grey',
-    showticklabels: false,
-    visible: false
-  },
-  yaxis: {
-    type: 'category',
-    position: 'left',
-    ticklen: 5,
-    tickmode: 'array',
-    tickvals: [0, 1, 2, 3], // This sets the positions of the ticks
-    ticktext: ['Latino', 'White', 'Black', 'Asian'], // This sets the labels
-    tickfont: {
-      size: 14,
-    },
-    tickcolor: '#FBFBFB',
-  },
-  annotations: [
-    {
-      text: 'Rent burdened households spend 30% or more of their income on rent',
-      xref: 'paper',
-      xanchor: 'left',
-      x: 0.0,
-      y: 3.7,
-      showarrow: false,
-      font: {
-        size: 14,
-        color: 'grey'
-      }
-    },
-    {
-      text: 'Source: American Community Survey 2017-2021 5-year estimates',
-      xref: 'paper',
-      xanchor: 'left',
-      x: 0,
-      y: -.7,
-      showarrow: false,
-      font: {
-        size: 14,
-        color: 'grey'
-      }
-    }
-    // Add more annotations as needed
-  ]
-};
-
-Plotly.newPlot('barPro', traces, layout2, {displayModeBar: false}, {responsive: true});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Event listener for window resize
+window.addEventListener('resize', function () {
+  updateLayoutForChart();
+});
 
 
 
@@ -486,7 +156,7 @@ d3.csv('./graph_data/studentScatter.csv').then(function(data) {
     animate: true,
     yaxis: {
       title: {'text': 'Students by ZIP Code'},
-      range: [0, 5500]
+      range: [0, 5500],
     },
     xaxis: {
       title: {'text': 'Percent of rent bidding by ZIP Code'},
@@ -496,6 +166,9 @@ d3.csv('./graph_data/studentScatter.csv').then(function(data) {
 var traces = [traceGraduateStudents, traceUndergraduateStudents, traceAllStudents, gradRegressionLine, underRegressionLine];
 
 Plotly.newPlot('scatterPlot', traces, layout, { displayModeBar: false }, { responsive: true });
+
+// Update the chart layout for mobile
+updateLayoutForChart();
 
 
 // Start scrolling steps
@@ -622,3 +295,4 @@ d3.select('#part7').on('stepin', function() {
 });
 
 });
+
