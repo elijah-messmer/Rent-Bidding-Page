@@ -157,10 +157,110 @@ d3.csv('./graph_data/studentScatter.csv').then(function(data) {
     yaxis: {
       title: {'text': 'Students by ZIP Code'},
       range: [0, 5500],
+      fixedrange: true,
     },
     xaxis: {
       title: {'text': 'Percent of rent bidding by ZIP Code'},
+      fixedrange: true,
     },
+    annotations: [
+      {
+        x: 25.62,
+        y: 5000,
+        xref: 'x',
+        yref: 'y',
+        text: 'Allston',
+        showarrow: true,
+        ax: 0,
+        ay: 30,
+        arrowhead: 0,
+        opacity: 0,
+        font: {
+          size: 14,
+          color: '#262626',
+        }
+      },
+      {
+        x: 25.62,
+        y: 2690,
+        xref: 'x',
+        yref: 'y',
+        text: 'Allston',
+        showarrow: true,
+        ax: 0,
+        ay: 30,
+        arrowhead: 0,
+        opacity: 0,
+        font: {
+          size: 14,
+          color: '#262626',
+        }
+      },
+      {
+        x: 17.33,
+        y: 2693,
+        xref: 'x',
+        yref: 'y',
+        text: 'Brighton',
+        showarrow: true,
+        ax: 0,
+        ay: -30,
+        arrowhead: 0,
+        opacity: 0,
+        font: {
+          size: 14,
+          color: '#262626',
+        }
+      },
+      {
+        x: 11.5,
+        y: 2435,
+        xref: 'x',
+        yref: 'y',
+        text: 'Fenway',
+        showarrow: true,
+        ax: 0,
+        ay: -30,
+        arrowhead: 0,
+        opacity: 0,
+        font: {
+          size: 14,
+          color: '#262626',
+        }
+      },
+      {
+        x: 17.65,
+        y: 2085,
+        xref: 'x',
+        yref: 'y',
+        text: 'Mission Hill',
+        showarrow: true,
+        ax: 0,
+        ay: -30,
+        arrowhead: 0,
+        opacity: 0,
+        font: {
+          size: 14,
+          color: '#262626',
+        }
+      },
+      {
+        x: 12.96,
+        y: 1698,
+        xref: 'x',
+        yref: 'y',
+        text: 'Fenway',
+        showarrow: true,
+        ax: 0,
+        ay: -30,
+        arrowhead: 0,
+        opacity: 0,
+        font: {
+          size: 14,
+          color: '#262626',
+        }
+      },
+    ],
 };
 
 var traces = [traceGraduateStudents, traceUndergraduateStudents, traceAllStudents, gradRegressionLine, underRegressionLine];
@@ -181,8 +281,9 @@ underStudentsRegression = d3.select("#scatterPlot > div > div > svg:nth-child(1)
 gradStudents = d3.selectAll("#scatterPlot > div > div > svg:nth-child(1) > g.cartesianlayer > g > g.plot > g > g.trace:nth-child(1)")
 gradStudentsRegression = d3.select("#scatterPlot > div > div > svg:nth-child(1) > g.cartesianlayer > g > g.plot > g > g.trace:nth-child(4)")
 allstonZip = d3.select("#scatterPlot > div > div > svg:nth-child(1) > g.cartesianlayer > g > g.plot > g > g.trace:nth-child(3) > g.points > path:nth-child(2)");
+annot1 = d3.select('.annotation[data-index="0"]');
+annot2 = d3.selectAll('.annotation');
 
-document.querySelector("#scatterPlot > div > div > svg:nth-child(1) > g.cartesianlayer > g > g.plot > g > g.trace.scatter.trace43def6 > g.points > path:nth-child(1)")
 
 allStudents.style('opacity', 0);
 underStudents.style('opacity', 0);
@@ -200,15 +301,21 @@ d3.select('#part2').on('stepout', function(e) {
   if (e.detail.direction === 'up') {
   allStudents.transition().duration(1000).style('opacity', .0);
   allstonZip.transition().duration(1000).style('opacity', 0);
+  annot1 = d3.select('.annotation[data-index="0"]');
+  annot1.transition().duration(1000).style('opacity', 0);
 }});
 
 d3.select('#part2').on('stepin', function() {
   allStudents.transition().duration(1000).style('opacity', .2);
   allstonZip.transition().duration(1000).style('opacity', 1);
+  annot1 = d3.select('.annotation[data-index="0"]');
+  annot1.transition().duration(1000).style('opacity', 1);
   });
 
 d3.select('#part3').on('stepin', function() {
   allStudents.transition().duration(1000).style('opacity', 1);
+  annot1 = d3.select('.annotation[data-index="0"]');
+  annot1.transition().duration(1000).style('opacity', 0);
   });
 
 
@@ -281,18 +388,30 @@ d3.select('#part3').on('stepin', function() {
   d3.select('#part5').on('stepin', function() {
     gradStudents.transition().duration(1000).style('opacity', 1);
     gradStudentsRegression.transition().duration(1000).style('opacity', 1);
-});
+  });
 
-d3.select('#part7').on('stepout', function(e) {
-  if (e.detail.direction === 'up') {
-  underStudents.transition().duration(1000).style('opacity', 1);
-  underStudentsRegression.transition().duration(1000).style('opacity', 1);
-  }});
+  d3.select('#part7').on('stepout', function(e) {
+    if (e.detail.direction === 'up') {
+    underStudents.transition().duration(1000).style('opacity', 1);
+    underStudentsRegression.transition().duration(1000).style('opacity', 1);
+    }});
 
-d3.select('#part7').on('stepin', function() {
-  underStudents.transition().duration(1000).style('opacity', 0);
-  underStudentsRegression.transition().duration(1000).style('opacity', 0);
-});
+  d3.select('#part7').on('stepin', function() {
+    underStudents.transition().duration(1000).style('opacity', 0);
+    underStudentsRegression.transition().duration(1000).style('opacity', 0);
+    annot2 = d3.selectAll('.annotation');
+    annot2.transition().duration(1000).style('opacity', 0);
+  });
+
+  d3.select('#part8').on('stepin', function() {
+    annot2 = d3.selectAll('.annotation');
+    annot2.transition().duration(1000).style('opacity', 1);
+  });
+
+  d3.select('#part9').on('stepin', function() {
+    annot2 = d3.selectAll('.annotation');
+    annot2.transition().duration(1000).style('opacity', 0);
+  });
 
 });
 

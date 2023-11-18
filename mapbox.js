@@ -364,7 +364,7 @@ window.addEventListener('resize', scroller1.resize);
 
 // Start code for explorable
 document.addEventListener('DOMContentLoaded', function() {
-    mapboxgl.accessToken = 'pk.eyJ1IjoiZWxpamFoLW1lc3NtZXIiLCJhIjoiY2xmYWNkMnFnMDRiZTNwcGJsM2J0ZjRpeCJ9.srDYVTRF4yqQ9QIz5b3EvA';
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZWxpamFoLW1lc3NtZXIiLCJhIjoiY2xuY2RscTZwMGZoZjJwc21hcmNsa2MzYiJ9.RLyE4QKOFzQEz9-SyExFmw';
     const map2 = new mapboxgl.Map({
         container: 'dashboard',
         style: 'mapbox://styles/elijah-messmer/cln4vvc0x06wc01ns1l7m0b8m',
@@ -373,6 +373,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     map2.scrollZoom.disable();
+    map2.dragPan.disable();
 
     function updateLegend1_1() {
     const title = 'Percent of apartments bid up';
@@ -459,72 +460,78 @@ function updateLegend2_2() {
 
     // Function for tooltips
     function popup() {
-    let popup = null; // declare the popup variable
+        let popup = null; // declare the popup variable
 
-    map2.on('mouseenter', 'rent-bidding-point-data-jitter', (event) => {
-        const feature = event.features[0];
-        let priceDifference = feature.properties.PRICE_DIFFERENCE;
+        function showPopup(event) {
+            const feature = event.features[0];
+            let priceDifference = feature.properties.PRICE_DIFFERENCE;
 
-        let textColor;
-        let formattedPriceDifference;
+            let textColor;
+            let formattedPriceDifference;
 
-        if (priceDifference > 0) {
-            textColor = '#EDA229'; // Color for positive numbers
-            formattedPriceDifference = `+$${priceDifference}`;
-        } else if (priceDifference < 0) {
-            textColor = '#65AFFF'; // Color for negative numbers
-            formattedPriceDifference = `-$${Math.abs(priceDifference)}`;
-        } else {
-            textColor = '#fafafa'; // Color for zero
-            formattedPriceDifference = `$${priceDifference}`;
+            if (priceDifference > 0) {
+                textColor = '#EDA229'; // Color for positive numbers
+                formattedPriceDifference = `+$${priceDifference}`;
+            } else if (priceDifference < 0) {
+                textColor = '#65AFFF'; // Color for negative numbers
+                formattedPriceDifference = `-$${Math.abs(priceDifference)}`;
+            } else {
+                textColor = '#fafafa'; // Color for zero
+                formattedPriceDifference = `$${priceDifference}`;
+            }
+
+            const fullBaths = feature.properties.NO_FULL_BATHS;
+            const halfBaths = feature.properties.NO_HALF_BATHS;
+
+            const totalBaths = fullBaths + (halfBaths / 2);
+
+            const formattedTotalBaths = totalBaths % 1 === 0 ? totalBaths.toFixed(0) : totalBaths.toFixed(1);
+
+            let popupContent = `
+                <p style='font-size: 18px; color: #fafafa; background-color: #444; padding: 0 2px 0 2px; margin-bottom: 1px'>Change from list price: <span style="color: ${textColor}; font-weight: bold;">${formattedPriceDifference}</span</p>
+                    <div style="display: flex; justify-content: space-between;">
+                        <p style="font-size: 16px; flex: 1; margin-right: 10px; margin-bottom: 0">List price:</p>
+                        <p style="font-size: 16px; margin: 0;">$${feature.properties.LIST_PRICE}</p>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <p style="font-size: 16px; flex: 1; margin-right: 10px; margin-bottom: 0">Bedrooms:</p>
+                        <p style="font-size: 16px; margin: 0;">${feature.properties.NO_BEDROOMS}</p>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <p style="font-size: 16px; flex: 1; margin-right: 10px; margin-bottom: 0">Bathrooms:</p>
+                        <p style="font-size: 16px; margin: 0;">${formattedTotalBaths}</p>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <p style="font-size: 16px; flex: 1; margin-right: 10px; margin-bottom: 0">Square feet:</p>
+                        <p style="font-size: 16px; margin: 0;">${feature.properties.SQUARE_FEET}</p>
+                    </div>
+            `;
+
+            // Create and set the popup content
+            popup = new mapboxgl.Popup({
+                offset: [0, -15],
+                closeButton: false,
+            })
+                .setLngLat(feature.geometry.coordinates)
+                .setHTML(popupContent)
+                .addTo(map2);
         }
 
-        const fullBaths = feature.properties.NO_FULL_BATHS;
-        const halfBaths = feature.properties.NO_HALF_BATHS;
-
-        const totalBaths = fullBaths + (halfBaths / 2);
-
-        const formattedTotalBaths = totalBaths % 1 === 0 ? totalBaths.toFixed(0) : totalBaths.toFixed(1);
-
-
-        let popupContent = `
-            <p style='font-size: 18px; color: #fafafa; background-color: #444; padding: 0 2px 0 2px; margin-bottom: 1px'>Change from list price: <span style="color: ${textColor}; font-weight: bold;">${formattedPriceDifference}</span</p>
-                <div style="display: flex; justify-content: space-between;">
-                    <p style="font-size: 16px; flex: 1; margin-right: 10px; margin-bottom: 0">List price:</p>
-                    <p style="font-size: 16px; margin: 0;">$${feature.properties.LIST_PRICE}</p>
-                </div>
-                <div style="display: flex; justify-content: space-between;">
-                    <p style="font-size: 16px; flex: 1; margin-right: 10px; margin-bottom: 0">Bedrooms:</p>
-                    <p style="font-size: 16px; margin: 0;">${feature.properties.NO_BEDROOMS}</p>
-                </div>
-                <div style="display: flex; justify-content: space-between;">
-                    <p style="font-size: 16px; flex: 1; margin-right: 10px; margin-bottom: 0">Bathrooms:</p>
-                    <p style="font-size: 16px; margin: 0;">${formattedTotalBaths}</p>
-                </div>
-                <div style="display: flex; justify-content: space-between;">
-                    <p style="font-size: 16px; flex: 1; margin-right: 10px; margin-bottom: 0">Square feet:</p>
-                    <p style="font-size: 16px; margin: 0;">${feature.properties.SQUARE_FEET}</p>
-                </div>
-        `;
-
-        // Create and set the popup content
-        popup = new mapboxgl.Popup({
-            offset: [0, -15],
-            closeButton: false
-        })
-        .setLngLat(feature.geometry.coordinates)
-        .setHTML(popupContent)
-        .addTo(map2);
-    });
-
-    map2.on('mouseleave', 'rent-bidding-point-data-jitter', () => {
-        // Remove the popup when the user stops hovering over the marker.
-        if (popup) {
-        popup.remove();
-        popup = null; // reset the popup variable
+        function hidePopup() {
+            // Remove the popup when the user stops hovering over the marker.
+            if (popup) {
+                popup.remove();
+                popup = null; // reset the popup variable
+            }
         }
-    });
-    };
+
+        // Attach event listeners for both mouseover and click/tap events
+        map2.on('mouseenter', 'rent-bidding-point-data-jitter', showPopup);
+
+        map2.on('click', 'rent-bidding-point-data-jitter', showPopup);
+
+        map2.on('mouseleave', 'rent-bidding-point-data-jitter', hidePopup);
+    }
 
 
     function animateZipInfo() {
@@ -720,6 +727,7 @@ function updateLegend2_2() {
                 ]);
 
                 map2.scrollZoom.enable();
+                map2.dragPan.enable();
                 updateStats();
             });
             zipList.appendChild(listItem);
@@ -741,6 +749,7 @@ function updateLegend2_2() {
                     0
                 ]);
             map2.scrollZoom.enable();
+            map2.dragPan.enable();
             updateStats();
         }
     });
@@ -817,7 +826,7 @@ map2.on('load', async function() {
 
     // Fetch and cache data
     if (!cache) {
-        cache = await fetch('https://api.mapbox.com/datasets/v1/elijah-messmer/clokh0dth1x5i2nrno97er5h8/features?access_token=pk.eyJ1IjoiZWxpamFoLW1lc3NtZXIiLCJhIjoiY2xmYWNkMnFnMDRiZTNwcGJsM2J0ZjRpeCJ9.srDYVTRF4yqQ9QIz5b3EvA')
+        cache = await fetch('https://api.mapbox.com/datasets/v1/elijah-messmer/clokh0dth1x5i2nrno97er5h8/features?access_token=pk.eyJ1IjoiZWxpamFoLW1lc3NtZXIiLCJhIjoiY2xuY2RscTZwMGZoZjJwc21hcmNsa2MzYiJ9.RLyE4QKOFzQEz9-SyExFmw')
             .then(response => response.json());
     }
     });
