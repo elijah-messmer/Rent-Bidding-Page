@@ -75,104 +75,104 @@ function popup() {
 
 // Function for legend creation and updating
 
-// function hideLegend() {
-//     d3.select('#legend').style('opacity', 0);
-// }
+function hideLegend() {
+    d3.select('#legend').style('opacity', 0);
+}
 
-// function updateLegend1() {
-//     const title = 'Percent of apartments bid up';
-//     const colors = ['#6ff6f6', '#05638f'];  // Define the start and end colors for the gradient
+function updateLegend1() {
+    const title = 'Percent of apartments bid up';
+    const colors = ['#6ff6f6', '#05638f'];  // Define the start and end colors for the gradient
 
-//     d3.select('#legend').transition().duration(1000).style('opacity', 1);
+    d3.select('#legend').transition().duration(1000).style('opacity', 1);
 
-//     const legend = document.querySelector('#legend');
+    const legend = document.querySelector('#legend');
 
-//     // Remove the 'added' class and additional elements
-//     const legendTitle = legend.querySelector('.legend-title');
-//     legendTitle.classList.remove('added');
+    // Remove the 'added' class and additional elements
+    const legendTitle = legend.querySelector('.legend-title');
+    legendTitle.classList.remove('added');
 
-//     const existingGradient = legend.querySelector('.legend-gradient');
-//     if (existingGradient) {
-//         existingGradient.remove();
-//     }
+    const existingGradient = legend.querySelector('.legend-gradient');
+    if (existingGradient) {
+        existingGradient.remove();
+    }
 
-//     const existingMarksContainer = legend.querySelector('.legend-marks');
-//     if (existingMarksContainer) {
-//         existingMarksContainer.remove();
-//     }
+    const existingMarksContainer = legend.querySelector('.legend-marks');
+    if (existingMarksContainer) {
+        existingMarksContainer.remove();
+    }
 
-//     const existingItemsContainer = legend.querySelector('.legend-items');
-//     if (existingItemsContainer) {
-//         existingItemsContainer.remove();
-//     }
+    const existingItemsContainer = legend.querySelector('.legend-items');
+    if (existingItemsContainer) {
+        existingItemsContainer.remove();
+    }
 
-//     // Add 'added' class to the legend title if not already added
-//     if (!legendTitle.classList.contains('added')) {
-//         legendTitle.classList.add('added');
-//         legendTitle.textContent = title;
+    // Add 'added' class to the legend title if not already added
+    if (!legendTitle.classList.contains('added')) {
+        legendTitle.classList.add('added');
+        legendTitle.textContent = title;
 
-//         // Create a container div for the gradient and marks
-//         const gradientMarksContainer = document.createElement('div');
-//         gradientMarksContainer.classList.add('gradient-marks-container');
+        // Create a container div for the gradient and marks
+        const gradientMarksContainer = document.createElement('div');
+        gradientMarksContainer.classList.add('gradient-marks-container');
 
-//         // Create a single element for the gradient
-//         const gradientElement = document.createElement('div');
-//         gradientElement.classList.add('legend-gradient');
-//         gradientElement.style.backgroundImage = `linear-gradient(to right, ${colors[0]}, ${colors[1]})`;
-//         gradientMarksContainer.appendChild(gradientElement);
+        // Create a single element for the gradient
+        const gradientElement = document.createElement('div');
+        gradientElement.classList.add('legend-gradient');
+        gradientElement.style.backgroundImage = `linear-gradient(to right, ${colors[0]}, ${colors[1]})`;
+        gradientMarksContainer.appendChild(gradientElement);
 
-//         // Create a container for the marks
-//         const marksContainer = document.createElement('div');
-//         marksContainer.classList.add('legend-marks');
+        // Create a container for the marks
+        const marksContainer = document.createElement('div');
+        marksContainer.classList.add('legend-marks');
 
-//         // Add little numbers beneath the legend
-//         const marks = ['0%', '13%', '26%'];
-//         marks.forEach((mark, index) => {
-//             const markElement = document.createElement('div');
-//             markElement.classList.add('legend-mark');
-//             markElement.textContent = mark;
-//             if (index === 0) {
-//                 markElement.style.textAlign = 'left';
-//             } else if (index === marks.length - 1) {
-//                 markElement.style.textAlign = 'right';
-//             }
-//             marksContainer.appendChild(markElement);
-//         });
+        // Add little numbers beneath the legend
+        const marks = ['0%', '13%', '26%'];
+        marks.forEach((mark, index) => {
+            const markElement = document.createElement('div');
+            markElement.classList.add('legend-mark');
+            markElement.textContent = mark;
+            if (index === 0) {
+                markElement.style.textAlign = 'left';
+            } else if (index === marks.length - 1) {
+                markElement.style.textAlign = 'right';
+            }
+            marksContainer.appendChild(markElement);
+        });
 
-//         gradientMarksContainer.appendChild(marksContainer);
+        gradientMarksContainer.appendChild(marksContainer);
 
-//         // wrap all legend items in one div
-//         const legendItemsDiv = document.createElement('div');
-//         legendItemsDiv.classList.add('legend-items');
-//         const newLegendItems = legend.querySelectorAll('.legend-item');
-//         newLegendItems.forEach(item => legendItemsDiv.appendChild(item));
+        // wrap all legend items in one div
+        const legendItemsDiv = document.createElement('div');
+        legendItemsDiv.classList.add('legend-items');
+        const newLegendItems = legend.querySelectorAll('.legend-item');
+        newLegendItems.forEach(item => legendItemsDiv.appendChild(item));
 
-//         // Append the title, gradient, marks, and legend items container to the legend element
-//         legend.appendChild(legendTitle);
-//         legend.appendChild(gradientMarksContainer);
-//         legend.appendChild(legendItemsDiv);
-//     }
-// }
-
-
+        // Append the title, gradient, marks, and legend items container to the legend element
+        legend.appendChild(legendTitle);
+        legend.appendChild(gradientMarksContainer);
+        legend.appendChild(legendItemsDiv);
+    }
+}
 
 
-// function updateLegend2() {
-//     const title = 'Percent increase from list price';
-//     const marks = ['0%', '4%', '8%']; // New marks for Legend 2
 
-//     const legend = document.querySelector('#legend');
 
-//     // Update legend title
-//     const legendTitle = legend.querySelector('.legend-title');
-//     legendTitle.textContent = title;
+function updateLegend2() {
+    const title = 'Percent increase from list price';
+    const marks = ['0%', '4%', '8%']; // New marks for Legend 2
 
-//     // Update the marks
-//     const markElements = legend.querySelectorAll('.legend-mark');
-//     marks.forEach((mark, index) => {
-//         markElements[index].textContent = mark;
-//     });
-// }
+    const legend = document.querySelector('#legend');
+
+    // Update legend title
+    const legendTitle = legend.querySelector('.legend-title');
+    legendTitle.textContent = title;
+
+    // Update the marks
+    const markElements = legend.querySelectorAll('.legend-mark');
+    marks.forEach((mark, index) => {
+        markElements[index].textContent = mark;
+    });
+}
 
 var config = {
 style: 'mapbox://styles/elijah-messmer/cln4vvc0x06wc01ns1l7m0b8m',
@@ -202,7 +202,7 @@ chapters: [
         },
         mapAnimation: 'flyTo',
         rotateAnimation: false,
-        // callback: 'hideLegend',
+        callback: 'hideLegend',
         onChapterEnter: [
             {
                 layer: 'percent-positive-price-difference',
@@ -231,7 +231,7 @@ chapters: [
         },
         mapAnimation: 'flyTo',
         rotateAnimation: false,
-        // callback: 'updateLegend1',
+        callback: 'updateLegend1',
         onChapterEnter: [
             {
                 layer: 'percent-positive-price-difference',
@@ -439,7 +439,7 @@ chapters: [
         },
         mapAnimation: 'flyTo',
         rotateAnimation: false,
-        // callback: 'updateLegend1',
+        callback: 'updateLegend1',
         onChapterEnter: [
             {
                 layer: 'percent-positive-price-difference',
@@ -473,7 +473,7 @@ chapters: [
         },
         mapAnimation: 'flyTo',
         rotateAnimation: false,
-        // callback: 'updateLegend2',
+        callback: 'updateLegend2',
         onChapterEnter: [
             {
                 layer: 'high-percent-increase',

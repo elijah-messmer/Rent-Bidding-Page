@@ -122,6 +122,7 @@ article {
   opacity: 0.25;
   color: #fafafa;
   background-color: #444;
+  position: relative;
   z-index: 999;
 }
 
