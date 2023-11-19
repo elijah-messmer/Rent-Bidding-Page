@@ -592,9 +592,9 @@ function updateLegend2_2() {
 
                 async function updateStats() {
                 // You can now use the cached data in this function
-                let filteredFeatures = cache.features.filter(feature => feature.properties['ZIP_CODE'] === selectedZipCode);
+                let filteredFeatures = cache.features.filter(feature => feature.properties['POSTCODE'] === selectedZipCode);
                         filteredFeatures.forEach(feature => {
-                            value0 = feature.properties['ZIP_CODE'];
+                            value0 = feature.properties['POSTCODE'];
                             value1 = feature.properties['PERCENT_PRICE_DIFFERENCE'];
                             value2 = feature.properties['PERCENT_DIFFERENCE'];
                             value3 = feature.properties['MAX_PERCENT'];
@@ -648,7 +648,7 @@ function updateLegend2_2() {
                             } else {
                                 city3.innerHTML = `<span style="color: #FBB225">+$${value10}</span> ${value20} average`;
                             }
-                            if (value20 != 'Boston') {
+                            if (value20 != 'Boston' || value12 === '') {
                                 studentPop.style.display = 'none';
                             } else {
                                 studentPop.style.display = 'flex';
@@ -826,7 +826,7 @@ map2.on('load', async function() {
 
     // Fetch and cache data
     if (!cache) {
-        cache = await fetch('https://api.mapbox.com/datasets/v1/elijah-messmer/clokh0dth1x5i2nrno97er5h8/features?access_token=pk.eyJ1IjoiZWxpamFoLW1lc3NtZXIiLCJhIjoiY2xuY2RscTZwMGZoZjJwc21hcmNsa2MzYiJ9.RLyE4QKOFzQEz9-SyExFmw')
+        cache = await fetch('https://api.mapbox.com/datasets/v1/elijah-messmer/clp4mth2113ih1mqdg2ay0nmi/features?access_token=pk.eyJ1IjoiZWxpamFoLW1lc3NtZXIiLCJhIjoiY2xuY2RscTZwMGZoZjJwc21hcmNsa2MzYiJ9.RLyE4QKOFzQEz9-SyExFmw')
             .then(response => response.json());
     }
     });

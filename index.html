@@ -22,7 +22,8 @@
         #map {
             top:0;
             height: 100vh;
-            width:inherit;
+            width:inherit;;
+            position: -webkit-sticky;
             position: sticky;
         }
         #mapInset {
@@ -102,6 +103,7 @@
             padding-bottom: 50vh;
             /* margin-bottom: 10vh; */
             opacity: 0.25;
+            z-index: 999;
         }
         .step.active {
             opacity: 0.9;
