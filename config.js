@@ -216,7 +216,7 @@ chapters: [
         id: 'first-identifier',
         alignment: 'left',
         hidden: false,
-        description: 'In the months leading up to Sept. 1, when the <a href="https://www.boston.gov/news/tips-residents-advance-september-1-move" target="_blank" style="color: inherit;"><span style="transition: color 0.3s;">the majority of Boston-area leases start</span></a>, 15% of all apartments were bid up from their list price across Boston, Brookline, Somerville and Cambridge, according to Multiple Listing Service records.',
+        description: 'In the months leading up to Sept. 1, when <a href="https://www.boston.gov/news/tips-residents-advance-september-1-move" target="_blank" style="color: inherit;"><span style="transition: color 0.3s;">the majority</span></a> of Boston-area leases start, <b>15% of all apartments were bid up</b> from their list price, according to Multiple Listing Service records for Boston, Brookline, Somerville and Cambridge.',
         location: {
             center: [-71.13983, 42.33769],
             zoom: 11.00,
@@ -250,7 +250,7 @@ chapters: [
         id: 'second-identifier',
         alignment: 'left',
         hidden: false,
-        description: 'For that 15% of apartments, renters bid $177 over the asking price on average — more than $2,000 in additional rent over a 12-month lease.<br><br>Rent bidding is defined here by the difference between the list and the sale price of an apartment. This is the best available measurement for rent bidding, but it’s not perfect. The price difference of an apartment could be explained by something besides bidding, like someone paying extra for an optional parking spot.',
+        description: 'Renters bid <b>$177 over the asking price</b> on average — more than $2,000 in additional rent over a 12-month lease.<br><br>Rent bidding is defined as the difference between the listed and the actual rent. This is the best available measure, but it’s not perfect. The price difference could be explained by other factors, such as someone paying extra for an optional parking spot.',
         location: {
             center: [-71.13983, 42.33769],
             zoom: 11.00,
@@ -296,7 +296,7 @@ chapters: [
         id: 'fourth-identifier',
         alignment: 'left',
         hidden: false,
-        description: 'In Stephanou’s 02144 ZIP Code, 20% of the apartments rented for above the asking price <svg height="20" width="20"><circle cx="10" cy="10" r="8" stroke="#873103" stroke-width="2" fill="#ff6224" /></svg>.',
+        description: 'In Stephanou’s 02144 ZIP code, 20% of the apartments rented for above the asking price <svg height="20" width="20"><circle cx="10" cy="10" r="8" stroke="#873103" stroke-width="2" fill="#ff6224" /></svg>.',
         location: {
             center: [-71.13609, 42.39992],
             zoom: 13.37,
@@ -331,7 +331,7 @@ chapters: [
         id: 'fifth-identifier',
         alignment: 'left',
         hidden: false,
-        description: 'Tom McCauley, a 27-year-old tech worker, found his apartment on that <span style="border-bottom: 1px dashed #fd1212; border-width: 3px">same Somerville-Cambridge line</span>. Before finding their current apartment, McCauley and his roommate inquired about 30-plus units across Fenway, East Somerville, and Watertown; toured six to seven apartments, and lost three bidding wars, often surrendering $25- to $50-dollar application fees.<br><br>At their new two-bedroom apartment, the two pay $3,000 a month plus utilities, after bidding up from the initial $2,875 list price.',
+        description: 'Tom McCauley, a 27-year-old tech worker, also found his apartment on the <span style="border-bottom: 1px dashed #fd1212; border-width: 3px">Somerville-Cambridge line</span>. McCauley and his roommate had inquired about more than 30 units across Fenway, East Somerville, and Watertown; toured six to seven apartments; and lost three bidding wars, often surrendering $25- to $50-dollar application fees.<br><br>At their new two-bedroom apartment, the two pay $3,000 a month plus utilities, after bidding up from the initial $2,875 list price.',
         location: {
             center: [-71.12609, 42.38692],
             zoom: 13.37,
@@ -366,7 +366,7 @@ chapters: [
         id: 'sixth-identifier',
         alignment: 'left',
         hidden: false,
-        description: '“I’ve lived in the Boston area for 4 years,” McCauley said. “This is the first time I’ve ever experienced rent bidding. Some of my friends who have been here longer have also never experienced it, at least not at this scale.”',
+        description: '“I’ve lived in the Boston area for four years,” McCauley said. “This is the first time I’ve ever experienced rent bidding. Some of my friends who have been here longer have also never experienced it, at least not at this scale.”',
         location: {
             center: [-71.12609, 42.38692],
             zoom: 13.37,
@@ -389,7 +389,7 @@ chapters: [
         id: 'seventh-identifier',
         alignment: 'left',
         hidden: false,
-        description: 'Across Somerville, the <a href="https://www.boston.com/real-estate/renting/2023/05/04/along-green-line-extension-bidding-wars-over-rentals-pick-up-speed/" target="_blank" style="text-decoration: none; color: inherit;"><span style="transition: color 0.3s; border-bottom: 1px dashed #00d62e; border-width: 3px">opening of the Green Line Extension stops</span></a> has driven up housing demand and costs driving above-average rates of rent bidding compared to nearby Cambridge and Boston.',
+        description: 'Across Somerville, the <a href="https://www.boston.com/real-estate/renting/2023/05/04/along-green-line-extension-bidding-wars-over-rentals-pick-up-speed/" target="_blank" style="text-decoration: none; color: inherit;"><span style="transition: color 0.3s; border-bottom: 1px dashed #00d62e; border-width: 3px">opening of the Green Line Extension stops</span></a> has driven up housing demand and costs, leading to more rent bidding here than in Cambridge and Boston.',
         location: {
             center: [-71.10449, 42.39043],
             zoom: 13.23,
@@ -424,7 +424,7 @@ chapters: [
         id: 'eighth-identifier',
         alignment: 'left',
         hidden: false,
-        description: 'Although Somerville has a relatively high rate of rent bidding compared to other areas, it does not see as severe of bids as some nearby ZIP codes.',
+        description: 'Although Somerville sees more rent bidding, the amounts people are offering over asking aren’t as severe as those in some neighboring communities.',
         location: {
             center: [-71.10449, 42.39043],
             zoom: 13.23,
@@ -458,7 +458,7 @@ chapters: [
         id: 'ninth-identifier',
         alignment: 'left',
         hidden: false,
-        description: 'Neighborhoods like Chinatown, Roslindale, Dorchester and Roxbury saw some of the highest bidding. On average, apartments that were bid on in these neighborhoods went for 7% to 8% above the list price.',
+        description: 'Neighborhoods like Chinatown, Roslindale, Dorchester, and Roxbury see some of the highest bidding. On average, apartments that were bid on in these neighborhoods went for <b>7% to 8%</b> above the list price.',
         location: {
             center: [-71.13983, 42.33769],
             zoom: 11.00,

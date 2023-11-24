@@ -344,6 +344,8 @@ d3.select('#part3').on('stepin', function() {
         }).then(function() {
           underStudentsContainer.transition().duration(1000).style('opacity', 1);
           underStudentsRegression.transition().duration(1000).style('opacity', 1);
+          gradStudents.style('opacity', 0);
+          gradStudentsRegression.style('opacity', 0);
         });
       }, 1000);
     }
@@ -411,6 +413,11 @@ d3.select('#part3').on('stepin', function() {
   d3.select('#part9').on('stepin', function() {
     annot2 = d3.selectAll('.annotation');
     annot2.transition().duration(1000).style('opacity', 0);
+    underStudents.style('opacity', 0);
+    underStudentsRegression.style('opacity', 0);
+    allStudents.style('opacity', 0);
+    gradStudents.style('opacity', 1);
+    gradStudentsRegression.style('opacity', 1);
   });
 
 });
